@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useWeb3React } from '@web3-react/core';
 
-function App() {
+import { AbiForm } from './components/AbiForm';
+import { Connect } from './components/Connect';
+
+export const App = () => {
+  const { active } = useWeb3React();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>Custom ABI</div>
+      <Connect />
+      {active ? <AbiForm /> : null}
+    </>
   );
-}
-
-export default App;
+};
