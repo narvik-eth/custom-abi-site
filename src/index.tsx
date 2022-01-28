@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 
+import 'bulma/css/bulma.css';
+
 import { App } from './App';
 
 const getLibrary = (provider: any) => new Web3Provider(provider);

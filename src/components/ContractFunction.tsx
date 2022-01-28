@@ -1,5 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { ethers } from 'ethers';
+import { useWeb3React } from '@web3-react/core';
+
+import { SCAN_EXPLORER } from '../connectors';
 
 const parseFunctionArgs = (name: string) => {
   let args = name.split('(')[1];
@@ -15,11 +18,14 @@ export const ContractFunction: React.FC<{
 }> = ({ name, contract }) => {
   const [resp, setResp] = useState('');
   const [args, setArgs] = useState<string[]>([]);
+  const { chainId } = useWeb3React();
 
   const onCall = useCallback(() => {
+    if (chainId === undefined) return;
+
     contract[name](...args).then((resp: any) => {
       try {
-        setResp(resp.hash);
+        setResp(`${SCAN_EXPLORER[chainId]}/tx/${resp.hash}`);
         resp.wait();
       } catch {
         try {
@@ -29,7 +35,7 @@ export const ContractFunction: React.FC<{
         }
       }
     });
-  }, [contract, name, args]);
+  }, [contract, name, args, chainId]);
 
   const changeArgs = useCallback(
     (i: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,23 +47,37 @@ export const ContractFunction: React.FC<{
   );
 
   if (!(name.includes('(') && name.includes(')'))) return null;
-  console.log(args);
 
   return (
     <div>
-      <span>{name}</span>
+      <hr />
+      <h2 className="subtitle">{name}</h2>
       <span>
-        {parseFunctionArgs(name).map((arg, i) => (
-          <input
-            key={`${name}-${i}`}
-            value={args[i]}
-            onChange={changeArgs(i)}
-            type="text"
-          />
-        ))}
-        <button onClick={onCall}>call</button>
-        <span>{resp}</span>
+        <div className="columns">
+          {parseFunctionArgs(name).map((arg, i) => (
+            <div key={`${name}-${i}`} className="column">
+              <input
+                className="input"
+                value={args[i]}
+                onChange={changeArgs(i)}
+                type="text"
+              />
+            </div>
+          ))}
+        </div>
+        <button
+          className="button is-link"
+          onClick={onCall}
+          style={{ marginTop: '10px' }}
+        >
+          Call
+        </button>
       </span>
+      {resp !== '' ? (
+        <pre style={{ marginTop: '10px' }}>
+          <code>{resp}</code>
+        </pre>
+      ) : null}
     </div>
   );
 };
