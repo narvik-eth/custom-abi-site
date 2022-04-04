@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/custom-abi-site/build/static/css/main.32d79fd7.css",
-    "main.js": "/custom-abi-site/build/static/js/main.ae8b8571.js",
+    "main.js": "/custom-abi-site/build/static/js/main.f0c38b88.js",
     "index.html": "/custom-abi-site/build/index.html",
     "main.32d79fd7.css.map": "/custom-abi-site/build/static/css/main.32d79fd7.css.map",
-    "main.ae8b8571.js.map": "/custom-abi-site/build/static/js/main.ae8b8571.js.map"
+    "main.f0c38b88.js.map": "/custom-abi-site/build/static/js/main.f0c38b88.js.map"
   },
   "entrypoints": [
     "static/css/main.32d79fd7.css",
-    "static/js/main.ae8b8571.js"
+    "static/js/main.f0c38b88.js"
   ]
 }
