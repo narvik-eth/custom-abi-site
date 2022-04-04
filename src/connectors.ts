@@ -17,6 +17,8 @@ const RPC_URLS = {
   43114: 'https://api.avax.network/ext/bc/C/rpc',
   80001: 'https://matic-mumbai.chainstacklabs.com',
   421611: 'https://rinkeby.arbitrum.io/rpc',
+  1666600000: 'https://api.harmony.one',
+  1666700000: 'https://api.s0.b.hmny.io',
 };
 
 export const SCAN_EXPLORER: {
@@ -37,6 +39,8 @@ export const SCAN_EXPLORER: {
   43114: 'https://snowtrace.io',
   80001: 'https://mumbai.polygonscan.com',
   421611: 'https://rinkeby-explorer.arbitrum.io',
+  1666600000: 'https://explorer.harmony.one',
+  1666700000: 'https://explorer.pops.one',
 };
 
 export const network = new NetworkConnector({
